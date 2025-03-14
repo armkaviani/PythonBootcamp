@@ -14,6 +14,7 @@ turtle.shape(image)
 data = pd.read_csv("50_states.csv")
 all_states= data.state.to_list()
 guessed_state =[]
+missing_states = []
 
 while len(guessed_state) < 50:
 
@@ -21,6 +22,16 @@ while len(guessed_state) < 50:
 #keep track of score
 # Using title(), when the input name is lower case or camel case.
     answer_state = screen.textinput(title=f"{len(guessed_state)}/50 States correct", prompt="What's another state's name?").title()
+
+    if answer_state == "Exit":
+    #create a list of not guessing states
+        for state in all_states:
+            if state not in guessed_state:
+                missing_states.append(state)
+        #write the missing states in a csv file
+        missing_states_data = pd.DataFrame(missing_states)
+        missing_states_data.to_csv("states_to_learn.csv")
+        break
 
     #Convert the guess to Title case
     if answer_state in all_states:
