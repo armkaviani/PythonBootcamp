@@ -18,7 +18,9 @@ guessed_state =[]
 while len(guessed_state) < 50:
 
 #Pop up box
-    answer_state = screen.textinput(title="Guess the State", prompt="What's another state's name?")
+#keep track of score
+# Using title(), when the input name is lower case or camel case.
+    answer_state = screen.textinput(title=f"{len(guessed_state)}/50 States correct", prompt="What's another state's name?").title()
 
     #Convert the guess to Title case
     if answer_state in all_states:
