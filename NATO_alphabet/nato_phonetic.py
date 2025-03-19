@@ -4,3 +4,5 @@ class NatoAlphabet:
     def __init__(self, csv_file):
         
         self.nato_alphabet = pd.read_csv(csv_file)
+        self.nato_alphabet_dict = {row.letter: row.code for (index, row) in self.nato_alphabet.iterrows()}
+
