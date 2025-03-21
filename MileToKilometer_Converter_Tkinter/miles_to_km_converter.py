@@ -26,3 +26,7 @@ class MilesToKmConverter:
         # Label: Result (Initially "0")
         self.kilometer_result_label = Label(text="0")
         self.kilometer_result_label.grid(column=1, row=1)
+
+        # Label: "Km"
+        self.kilometer_label = Label(text="Km")
+        self.kilometer_label.grid(column=2, row=1)
