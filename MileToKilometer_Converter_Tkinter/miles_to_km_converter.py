@@ -41,4 +41,7 @@ class MilesToKmConverter:
         miles = float(self.miles_input.get())  # Get input from entry field
         km = ConverterLogic.miles_to_km(miles)  # Call the conversion function
         self.kilometer_result_label.config(text=f"{km}")  # Update label
+        
      
+    def run(self):
+        self.window.mainloop()
