@@ -1,4 +1,5 @@
 from tkinter import *
+from converter_logic import ConverterLogic
 
 
 class MilesToKmConverter:
@@ -36,3 +37,8 @@ class MilesToKmConverter:
         self.calculate_button.grid(column=1, row=2)
 
    
+    def convert(self):
+        miles = float(self.miles_input.get())  # Get input from entry field
+        km = ConverterLogic.miles_to_km(miles)  # Call the conversion function
+        self.kilometer_result_label.config(text=f"{km}")  # Update label
+     
