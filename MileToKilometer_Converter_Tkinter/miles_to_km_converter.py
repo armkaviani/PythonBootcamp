@@ -19,7 +19,7 @@ class MilesToKmConverter:
         self.miles_label = Label(text="Miles")
         self.miles_label.grid(column=2, row=0)
    
-         # Label: "is equal to"
+        # Label: "is equal to"
         self.is_equal_label = Label(text="is equal to")
         self.is_equal_label.grid(column=0, row=1)
 
@@ -30,3 +30,7 @@ class MilesToKmConverter:
         # Label: "Km"
         self.kilometer_label = Label(text="Km")
         self.kilometer_label.grid(column=2, row=1)
+
+        # Button: "Calculate"
+        self.calculate_button = Button(text="Calculate")
+        self.calculate_button.grid(column=1, row=2)
