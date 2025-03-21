@@ -23,3 +23,6 @@ class MilesToKmConverter:
         self.is_equal_label = Label(text="is equal to")
         self.is_equal_label.grid(column=0, row=1)
 
+        # Label: Result (Initially "0")
+        self.kilometer_result_label = Label(text="0")
+        self.kilometer_result_label.grid(column=1, row=1)
