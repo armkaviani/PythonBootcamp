@@ -8,4 +8,10 @@ class MilesToKmConverter:
         self.window.title("Miles to Kilometer Converter")
         self.window.config(padx=20, pady=20)
 
+        self.create_widgets()
+
+    def create_widgets(self):
+        #Entry for miles
+        self.miles_input = Entry(width=7)
+        self.miles_input.grid(column=1, row=0)
    
