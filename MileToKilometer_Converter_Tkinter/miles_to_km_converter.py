@@ -33,7 +33,7 @@ class MilesToKmConverter:
         self.kilometer_label.grid(column=2, row=1)
 
         # Button: "Calculate"
-        self.calculate_button = Button(text="Calculate")
+        self.calculate_button = Button(text="Calculate", command = self.convert)
         self.calculate_button.grid(column=1, row=2)
 
    
@@ -41,7 +41,7 @@ class MilesToKmConverter:
         miles = float(self.miles_input.get())  # Get input from entry field
         km = ConverterLogic.miles_to_km(miles)  # Call the conversion function
         self.kilometer_result_label.config(text=f"{km}")  # Update label
-        
+
      
     def run(self):
         self.window.mainloop()
