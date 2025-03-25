@@ -1,4 +1,4 @@
-from CoundDown_mechanism import Countdown
+from CountDown_Mechanism import Countdown
 
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -6,7 +6,7 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 
 class TimerMechanism:
-    WORK_MIN = 1
+    WORK_MIN = 25
     SHORT_BREAK_MIN = 5
     LONG_BREAK_MIN = 20
 
