@@ -24,3 +24,8 @@ class Countdown:
                 marks += "✅"
             self.ui.update_check_marks(marks)
 
+    def reset_countdown(self):
+        if self.timer:
+            self.ui.root.after_cancel(self.timer)
+            self.timer = None
+            
