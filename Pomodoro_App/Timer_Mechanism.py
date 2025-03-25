@@ -30,3 +30,11 @@ class TimerMechanism:
         else:
             self.countdown.count_down(work_sec)
             self.ui.update_title("Work", GREEN)
+
+
+    def reset_timer(self):
+        self.countdown.reset_countdown()
+        self.ui.update_check_marks("")
+        self.ui.update_title("Timer", GREEN)
+        self.ui.update_timer_text("00:00")
+        self.countdown.reps = 0
