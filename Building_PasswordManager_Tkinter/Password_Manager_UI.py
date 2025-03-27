@@ -1,4 +1,6 @@
 from tkinter import *
+from Password_Generator import PasswordGenerator
+from Password_Saver import PasswordSaver
 
 class PasswordManagerUI:
     def __init__(self):
@@ -32,6 +34,12 @@ class PasswordManagerUI:
 
         self.add_button = Button(text="Add", width=36)
         self.add_button.grid(row=4, column=1, columnspan=2)
+
+        # Creating objects for PasswordGenerator and PasswordSaver
+        self.password_generator = PasswordGenerator()
+        self.password_saver = PasswordSaver(self.website_entry, self.email_entry, self.password_entry)
+
+
 
     def run(self):
         self.window.mainloop()
