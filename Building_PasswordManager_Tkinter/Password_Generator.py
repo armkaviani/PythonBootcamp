@@ -1,4 +1,5 @@
 from random import choice, randint, shuffle
+import pyperclip
 
 
 class PasswordGenerator:
@@ -12,3 +13,11 @@ class PasswordGenerator:
         password_letters = [choice(self.letters) for _ in range(randint(8, 10))]
         password_symbols = [choice(self.symbols) for _ in range(randint(2, 4))]
         password_numbers = [choice(self.numbers) for _ in range(randint(2, 4))]
+
+        password_list = password_letters + password_symbols + password_numbers
+        shuffle(password_list)
+
+        password = "".join(password_list)
+        password_field.insert(0, password)
+        pyperclip.copy(password)
+
