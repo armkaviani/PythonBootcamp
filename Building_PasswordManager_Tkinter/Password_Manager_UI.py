@@ -26,3 +26,11 @@ class PasswordManagerUI:
         self.password_entry = Entry(width=21)
         self.password_entry.grid(row=3, column=1)
 
+        # Buttons
+        self.generate_password_button = Button(text="Generate Password")
+        self.generate_password_button.grid(row=3, column=2)
+
+        self.add_button = Button(text="Add", width=36)
+        self.add_button.grid(row=4, column=1, columnspan=2)
+
+
