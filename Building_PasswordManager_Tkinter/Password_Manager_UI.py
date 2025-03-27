@@ -15,3 +15,14 @@ class PasswordManagerUI:
         Label(text="Website:").grid(row=1, column=0)
         Label(text="Email/Username:").grid(row=2, column=0)
         Label(text="Password:").grid(row=3, column=0)
+
+        # Entries
+        self.website_entry = Entry(width=35)
+        self.website_entry.grid(row=1, column=1, columnspan=2)
+        self.website_entry.focus()
+        self.email_entry = Entry(width=35)
+        self.email_entry.grid(row=2, column=1, columnspan=2)
+        self.email_entry.insert(0, "example@gmail.com")
+        self.password_entry = Entry(width=21)
+        self.password_entry.grid(row=3, column=1)
+
