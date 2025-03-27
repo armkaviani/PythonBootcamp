@@ -33,4 +33,8 @@ class PasswordManagerUI:
         self.add_button = Button(text="Add", width=36)
         self.add_button.grid(row=4, column=1, columnspan=2)
 
+    def run(self):
+        self.window.mainloop()
+
+
 
