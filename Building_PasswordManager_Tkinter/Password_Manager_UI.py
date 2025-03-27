@@ -10,3 +10,8 @@ class PasswordManagerUI:
         self.logo_img = PhotoImage(file="logo.png")
         self.canvas.create_image(100, 100, image=self.logo_img)
         self.canvas.grid(row=0, column=1)
+
+        # Labels
+        Label(text="Website:").grid(row=1, column=0)
+        Label(text="Email/Username:").grid(row=2, column=0)
+        Label(text="Password:").grid(row=3, column=0)
