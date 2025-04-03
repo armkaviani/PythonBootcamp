@@ -21,3 +21,8 @@ class FlashcardUI:
         self.wrong_button_img = PhotoImage(file="images/wrong.png")
         self.unknown_button = Button(image=self.wrong_button_img, highlightthickness=0)
         self.unknown_button.grid(row=1, column=0)
+
+    def update_card(self, title, word, image):
+        self.canvas.itemconfig(self.title_card, text=title, fill="black" if title == "French" else "white")
+        self.canvas.itemconfig(self.word_card, text=word, fill="black" if title == "French" else "white")
+        self.canvas.itemconfig(self.card_background, image=image)
