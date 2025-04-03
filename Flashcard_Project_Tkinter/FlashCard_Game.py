@@ -12,3 +12,6 @@ class FlashcardGame:
         self.data_random = random.choice(self.flashcard_data.data_dic)
         self.flashcard_ui.update_card("French", self.data_random["French"], self.flashcard_ui.card_front_image)
         self.flip_timer = self.flashcard_ui.frame.after(3000, self.flip_card)
+
+    def flip_card(self):
+        self.flashcard_ui.update_card("English", self.data_random["English"], self.flashcard_ui.card_back_image)
