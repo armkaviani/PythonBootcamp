@@ -1,6 +1,6 @@
 import smtplib
 import datetime as dt
-import pandas as pd
+
 
 class BirthdayEmailer:
     def __init__(self, email, password, smtp_server="smtp.gmail.com"):
