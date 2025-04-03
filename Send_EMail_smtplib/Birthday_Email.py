@@ -27,3 +27,17 @@ class BirthdayEmailer:
             connection.sendmail(from_addr=self.email,
                                 to_addrs=recipient_email,
                                 msg=f"Subject:{subject}\n\n{body}")
+
+
+    def send_birthday_email(self):
+        today_tuple = self.get_today_tuple()
+        birthdays_dict = self.load_birthdays()
+
+        if today_tuple in birthdays_dict:
+            birth_person = birthdays_dict[today_tuple]
+            letter_template = self.load_letter_template()
+            birth_text = letter_template.replace("[NAME]", birth_person["name"])
+            self.send_email(birth_person["email"], "Happy Birthday!", birth_text)
+            print(f"Sent birthday email to {birth_person['name']}")
+        else:
+            print("No birthdays today.")
