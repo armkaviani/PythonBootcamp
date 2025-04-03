@@ -15,12 +15,20 @@ class FlashcardUI:
         self.canvas.grid(row=0, column=0, columnspan=2)
 
         self.right_button_img = PhotoImage(file="images/right.png")
-        self.check_button = Button(image=self.right_button_img, highlightthickness=0, command=self.flashcard_game.is_correct)
+        self.check_button = Button(image=self.right_button_img, highlightthickness=0, command=self.handle_correct)
         self.check_button.grid(row=1, column=1)
 
         self.wrong_button_img = PhotoImage(file="images/wrong.png")
-        self.unknown_button = Button(image=self.wrong_button_img, highlightthickness=0, command=self.flashcard_game.random_card)
+        self.unknown_button = Button(image=self.wrong_button_img, highlightthickness=0, command=self.handle_wrong)
         self.unknown_button.grid(row=1, column=0)
+
+    def handle_correct(self):
+        if self.flashcard_game:
+            self.flashcard_game.is_correct()
+
+    def handle_wrong(self):
+        if self.flashcard_game:
+            self.flashcard_game.random_card()
 
     def update_card(self, title, word, image):
         self.canvas.itemconfig(self.title_card, text=title, fill="black" if title == "French" else "white")
