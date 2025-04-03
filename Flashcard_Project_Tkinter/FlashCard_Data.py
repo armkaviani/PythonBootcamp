@@ -7,7 +7,6 @@ class FlashcardData:
         self.load_data()
 
     def load_data(self):
-        """Load data from CSV file and handle file not found error"""
         try:
             data = pd.read_csv("french_words.csv")
         except FileNotFoundError:
@@ -15,3 +14,11 @@ class FlashcardData:
             self.data_dic = original_data.to_dict(orient='records')
         else:
             self.data_dic = data.to_dict(orient="records")
+
+    def remove_word(self, word):
+        self.data_dic.remove(word)
+        data = pd.DataFrame(self.data_dic)
+        data.to_csv("words_to_learn.csv", index=False)
+
+
+
