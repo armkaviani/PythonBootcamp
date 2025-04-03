@@ -19,3 +19,11 @@ class BirthdayEmailer:
     def load_letter_template(self, file_path="letter.txt"):
         with open(file_path) as text:
             return text.read()
+        
+    def send_email(self, recipient_email, subject, body):
+        with smtplib.SMTP(self.smtp_server) as connection:
+            connection.starttls()
+            connection.login(user=self.email, password=self.password)
+            connection.sendmail(from_addr=self.email,
+                                to_addrs=recipient_email,
+                                msg=f"Subject:{subject}\n\n{body}")
