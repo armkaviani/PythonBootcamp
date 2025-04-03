@@ -15,3 +15,7 @@ class FlashcardGame:
 
     def flip_card(self):
         self.flashcard_ui.update_card("English", self.data_random["English"], self.flashcard_ui.card_back_image)
+
+    def is_correct(self):
+        self.flashcard_data.remove_word(self.data_random)
+        self.random_card()
