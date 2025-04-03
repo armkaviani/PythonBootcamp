@@ -15,7 +15,7 @@ class FlashcardUI:
         self.canvas.grid(row=0, column=0, columnspan=2)
 
         self.right_button_img = PhotoImage(file="images/right.png")
-        self.check_button = Button(image=self.right_button_img, highlightthickness=0)
+        self.check_button = Button(image=self.right_button_img, highlightthickness=0, command=self.flashcard_game.is_correct)
         self.check_button.grid(row=1, column=1)
 
         self.wrong_button_img = PhotoImage(file="images/wrong.png")
