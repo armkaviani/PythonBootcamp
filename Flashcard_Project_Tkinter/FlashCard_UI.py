@@ -19,7 +19,7 @@ class FlashcardUI:
         self.check_button.grid(row=1, column=1)
 
         self.wrong_button_img = PhotoImage(file="images/wrong.png")
-        self.unknown_button = Button(image=self.wrong_button_img, highlightthickness=0)
+        self.unknown_button = Button(image=self.wrong_button_img, highlightthickness=0, command=self.flashcard_game.random_card)
         self.unknown_button.grid(row=1, column=0)
 
     def update_card(self, title, word, image):
