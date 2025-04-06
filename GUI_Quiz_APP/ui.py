@@ -22,12 +22,14 @@ class QuizeInterface:
         
         self.true_img = PhotoImage(file="images/true.png")
         self.false_img = PhotoImage(file="images/false.png")
-        self.true_button = Button(image=self.true_img)
-        self.false_button = Button(image=self.false_img)
+        self.true_button = Button(image=self.true_img, command=self.get_true_answer)
+        self.false_button = Button(image=self.false_img, command=self.get_false_answer)
         self.true_button.grid(column=0, row=2)
         self.false_button.grid(column=1, row=2)
 
         self.get_next_question()
+        self.get_true_answer()
+        self.get_false_answer()
 
         self.frame.mainloop()
 
@@ -35,3 +37,12 @@ class QuizeInterface:
     def get_next_question(self):
         question_text = self.quiz.next_question()
         self.canvas.itemconfig(self.question_text, text=question_text)
+
+
+    def get_true_answer(self):
+        return self.quiz.check_answer("True")
+
+    def get_false_answer(self):
+        return self.quiz.check_answer("False")
+        
+        
