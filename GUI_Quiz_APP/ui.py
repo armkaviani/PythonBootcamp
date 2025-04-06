@@ -15,7 +15,7 @@ class QuizeInterface:
         self.score_board = Label(text="Score: 0", bg=THEME_COLOR, fg="White")
         self.score_board.grid(column=1, row=0)
 
-        self.canvas = Canvas(height=250, width=300, bg="white")
+        self.canvas = Canvas(height=250, width=300, bg="White")
         self.question_text = self.canvas.create_text(150, 125, width=280, text="Some Question Text", fill=THEME_COLOR,
                                                      font=("Arial", 20, "italic"))
         self.canvas.grid(column=0, row=1, columnspan=2, pady=50)
@@ -28,15 +28,13 @@ class QuizeInterface:
         self.false_button.grid(column=1, row=2)
 
         self.get_next_question()
-        self.get_true_answer()
-        self.get_false_answer()
 
         self.frame.mainloop()
 
 
     def get_next_question(self):
         if self.quiz.still_has_questions():
-            self.canvas.config(bg="white")
+            self.canvas.config(bg="White")
             self.score_board.config(text=f"Score: {self.quiz.score}")
             question_text = self.quiz.next_question()
             self.canvas.itemconfig(self.question_text, text=question_text)
