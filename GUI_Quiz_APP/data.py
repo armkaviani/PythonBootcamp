@@ -1,6 +1,5 @@
 import requests
 
-
 class QuestionData:
 
     def __init__(self):

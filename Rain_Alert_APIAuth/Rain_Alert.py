@@ -7,6 +7,12 @@ class RainAlert():
        
         self.api_key = os.environ.get("API_KEY")
         self.weather_params = {"lat":lat, "lon":lon, "appid":self.api_key, "cnt": 4}
+
+    def request_api(self):
+        self.responds = requests.get("https://api.openweathermap.org/data/2.5/forecast", params=self.weather_params)
+        self.responds.raise_for_status()
+        weather_data = self.responds.json()
+
         
 
 
