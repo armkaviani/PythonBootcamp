@@ -1,5 +1,6 @@
 import requests
 import os
+from twilio.rest import Client
 
 class RainAlert():
 
@@ -19,6 +20,22 @@ class RainAlert():
             if int(condition_code) < 700:
                 will_rain = True
                 print(f"⛈️ Forecast: {data['weather'][0]['description']} at {data['dt_txt']}")
+
+    
+        if will_rain:
+            client = Client(self.account_sid, self.auth_token)
+            message = client.messages \
+                .create(
+                body="It is going to rain today. Bring an umbrella.",
+                from_=self.twilio_from ,
+                to=self.twilio_to 
+                )
+            print(f"✅ SMS sent: {message.sid}")
+
+        else:
+            print("🌤️ No rain expected in the next 12 hours.")
+            
+
 
 
         
