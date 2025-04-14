@@ -13,6 +13,14 @@ class RainAlert():
         self.responds.raise_for_status()
         weather_data = self.responds.json()
 
+        will_rain = False
+        for data in weather_data['list']:
+            condition_code =  data["weather"][0]["id"]
+            if int(condition_code) < 700:
+                will_rain = True
+                print(f"⛈️ Forecast: {data['weather'][0]['description']} at {data['dt_txt']}")
+
+
         
 
 
