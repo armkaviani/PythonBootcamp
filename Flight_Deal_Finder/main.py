@@ -11,6 +11,9 @@ def main():
         for value in data_sheet:
             value["iataCode"] = flight_search.get_destination(value["city"])
         print(f"data_sheet:\n {data_sheet}")
+    
+    data_manager.destination_data = data_sheet
+    data_manager.update_data()
    
 
 

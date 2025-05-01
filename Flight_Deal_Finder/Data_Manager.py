@@ -24,3 +24,11 @@ class DataManager:
         self.destination_data = data["prices"]
         return self.destination_data
         
+    
+    def update_data(self):
+        for city in self.destination_data:
+            new_input = {
+                "price": {"iataCode" : city["iataCode"]}
+            }
+            response = requests.put(url=f"{SHEETY_PRICES_ENDPOINT}/{city['id']}",json=new_input, auth=self.authorization )
+            print(response.text)
