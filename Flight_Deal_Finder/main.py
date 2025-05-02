@@ -6,6 +6,7 @@ def main():
     data_sheet = data_manager.get_data()
 
     flight_search = FlightSearch()
+    flight_search._get_new_token()
 
     if data_sheet[0]["iataCode"] == "":
         for value in data_sheet:
@@ -14,6 +15,7 @@ def main():
     
     data_manager.destination_data = data_sheet
     data_manager.update_data()
+    
    
 
 
