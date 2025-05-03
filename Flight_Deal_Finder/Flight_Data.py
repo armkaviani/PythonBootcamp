@@ -16,3 +16,13 @@ class FlightData:
             print("No flight data")
             return FlightData("N/A", "N/A", "N/A", "N/A", "N/A")
 
+
+        # Data from the first flight in the json
+        first_flight = data['data'][0]
+        lowest_price = float(first_flight["price"]["grandTotal"])
+        origin = first_flight["itineraries"][0]["segments"][0]["departure"]["iataCode"]
+        destination = first_flight["itineraries"][0]["segments"][0]["arrival"]["iataCode"]
+        out_date = first_flight["itineraries"][0]["segments"][0]["departure"]["at"].split("T")[0]
+        return_date = first_flight["itineraries"][1]["segments"][0]["departure"]["at"].split("T")[0]
+
+       
