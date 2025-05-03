@@ -10,4 +10,9 @@ class FlightData:
         self.out_date = out_date
         self.return_date = return_date
 
-    
+    def find_cheapest_flight(data):
+    # Handle empty data if no flight or Amadeus rate limit exceeded
+        if data is None or not data['data']:
+            print("No flight data")
+            return FlightData("N/A", "N/A", "N/A", "N/A", "N/A")
+
