@@ -4,7 +4,7 @@ import os
 
 load_dotenv()
 TOKEN_ENDPOINT = "https://test.api.amadeus.com/v1/security/oauth2/token"
-IATA_ENDPOINT = "https://test.api.amadeus.com/v1/reference-data/locations"
+IATA_ENDPOINT = "https://test.api.amadeus.com/v1/reference-data/locations/cities"
 
 
 class FlightSearch:
