@@ -31,7 +31,7 @@ data_manager.update_destination_codes()
 
 customer_data = data_manager.get_customer_emails()
 # Verify the name of your email column in your sheet. Yours may be different from mine
-customer_email_list = [row["whatIsYourEmail?"] for row in customer_data]
+customer_email_list = [row["WhatiyYourE-Mail?"] for row in customer_data]
 # print(f"Your email list includes {customer_email_list}")
 
 # ==================== Search for Flights and Send Notifications ====================
@@ -82,4 +82,4 @@ for destination in sheet_data:
                          f"on {cheapest_flight.out_date} until {cheapest_flight.return_date}."
         )
 
-
+        notification_manager.send_emails(email_list=customer_email_list, email_body=message)
