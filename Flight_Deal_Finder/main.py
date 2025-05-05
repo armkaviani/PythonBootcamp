@@ -3,6 +3,8 @@ from Flight_Search import FlightSearch
 from Flight_Data import FlightData
 import time
 from datetime import datetime, timedelta
+
+
 def main():
     data_manager = DataManager()
     data_sheet = data_manager.get_data()
