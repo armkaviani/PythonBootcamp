@@ -1,0 +1,27 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    
+        "version": "0.2.0",
+        "configurations": [
+        {
+            "name": "Python: main",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "env": {
+              "ENV_NIX_APP_ID": "3f9b5276",
+              "ENV_NIX_API_KEY": "6987a39aa26b47c73d3cd4d736133ec2",
+              "TEST_VAR": "TestValue",
+
+              "ENV_NIX_ENDPOINT": "https://trackapi.nutritionix.com/v2/natural/exercise",
+              "ENV_SHEETY_ENDPOINT": "https://api.sheety.co/3bc42ef445e4e059e3fa4d68b4e50d15/myWorkouts/workouts",
+              "ENV_SHEETY_USERNAME": "Armaghan",
+              "ENV_SHEETY_PASSWORD": "Becheh(kiana)63",
+              "ENV_SHEETY_TOKEN": "QXJtYWdoYW46QmVjaGVoKGtpYW5hKTYz"
+            }
+          }
+        ]
+      }
