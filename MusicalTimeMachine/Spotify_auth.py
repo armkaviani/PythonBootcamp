@@ -28,3 +28,20 @@ class Spotify_auth:
         return spotify
 
    
+    def create_playlist(self, song_names):
+        song_uris = []
+        year = self.travel_date.split("-")[0]
+        for song in song_names:
+            result = self.spotify.search(q=f"track:{song} year:{year}", type="track")
+            try:
+                uri = result["tracks"]["items"][0]["uri"]
+                song_uris.append(uri)
+            except IndexError:
+                print(f"{song} doesn't exist in Spotify. Skipped.")
+        
+
+        user_id = self.spotify.current_user()["id"]
+        playlist = self.spotify.user_playlist_create(user=user_id, name=f"{self.travel_date} Billboard 100", public=False)
+        print(playlist)
+
+        self.spotify.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
