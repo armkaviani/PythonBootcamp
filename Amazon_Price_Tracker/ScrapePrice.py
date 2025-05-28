@@ -9,6 +9,20 @@ class ScrapePrice:
         self.headers = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36",
                         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
                 }
+        
+    def get_price(self):
+        response = requests.get(self.url, headers=self.headers)
+        soup = BeautifulSoup(response.content, "lxml") 
+        print(soup.prettify())
+        price_with_currency = soup.find(name="span", class_="a-offscreen").get_text()
+        print(price_with_currency)
+        price = price_with_currency.split("€")[0].replace(",", ".")
+        price_as_float = float(price)
+        print(price_as_float)
+        title = soup.find(id="productTitle").text.strip()
+        print(title)
+
+        return price_as_float, price_with_currency, title
 
 
     
