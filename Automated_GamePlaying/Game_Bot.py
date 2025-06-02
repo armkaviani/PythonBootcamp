@@ -15,3 +15,6 @@ class CookieClickerBot:
 
         self.timeout = time.time() + 5
         self.five_min = time.time() + 60*5
+
+    def click_cookie(self):
+        self.cookie.click()
