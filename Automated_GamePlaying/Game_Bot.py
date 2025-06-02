@@ -36,3 +36,11 @@ class CookieClickerBot:
         if "," in money_element:
             money_element = money_element.replace(",", "")
         return int(money_element)
+    
+
+    def get_affordable_upgrades(self, item_prices):
+        cookie_upgrades = {item_prices[n]: self.item_ids[n] for n in range(len(item_prices))}
+        cookie_count = self.get_cookie_count()
+        affordable = {cost: id for cost, id in cookie_upgrades.items() if cookie_count > cost}
+        return affordable
+    
