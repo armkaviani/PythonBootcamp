@@ -1,0 +1,4 @@
+GENDER = "female"
+WEIGHT_KG = "64"
+HEIGHT_CM = "178"
+AGE = "40"
