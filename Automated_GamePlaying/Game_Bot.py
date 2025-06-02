@@ -43,4 +43,13 @@ class CookieClickerBot:
         cookie_count = self.get_cookie_count()
         affordable = {cost: id for cost, id in cookie_upgrades.items() if cookie_count > cost}
         return affordable
-    
+
+
+    def purchase_upgrade(self, affordable_upgrades):
+        if not affordable_upgrades:
+            return
+        highest_price = max(affordable_upgrades)
+        print(f"Purchasing upgrade costing: {highest_price}")
+        upgrade_id = affordable_upgrades[highest_price]
+        self.driver.find_element(By.ID, upgrade_id).click()
+        
