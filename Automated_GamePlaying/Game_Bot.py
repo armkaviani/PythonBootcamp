@@ -29,3 +29,10 @@ class CookieClickerBot:
                 cost = int(text.split("-")[1].strip().replace(",", ""))
                 item_prices.append(cost)
         return item_prices
+    
+    
+    def get_cookie_count(self):
+        money_element = self.driver.find_element(By.ID, "money").text
+        if "," in money_element:
+            money_element = money_element.replace(",", "")
+        return int(money_element)
