@@ -18,3 +18,14 @@ class CookieClickerBot:
 
     def click_cookie(self):
         self.cookie.click()
+
+    
+    def get_item_prices(self):
+        all_prices = self.driver.find_elements(By.CSS_SELECTOR, "#store b")
+        item_prices = []
+        for price in all_prices:
+            text = price.text
+            if text != "":
+                cost = int(text.split("-")[1].strip().replace(",", ""))
+                item_prices.append(cost)
+        return item_prices
