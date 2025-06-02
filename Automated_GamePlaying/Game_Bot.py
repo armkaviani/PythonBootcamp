@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import time
 
 class CookieClickerBot:
     def __init__(self):
@@ -11,3 +12,6 @@ class CookieClickerBot:
         self.cookie = self.driver.find_element(By.ID, "cookie")
         items = self.driver.find_elements(By.CSS_SELECTOR, "#store div")
         self.item_ids = [item.get_attribute("id") for item in items]
+
+        self.timeout = time.time() + 5
+        self.five_min = time.time() + 60*5
