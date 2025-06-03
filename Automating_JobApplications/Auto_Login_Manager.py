@@ -21,4 +21,14 @@ class AutoLoginManager:
         self.phone = os.environ["PHONE"]
 
 
-    
+    def login_manager(self):
+        time.sleep(2)
+        sign_in_button = self.driver.find_element(By.XPATH, '//*[@id="base-contextual-sign-in-modal"]/div/section/div/div/div/div[2]/button')
+        sign_in_button.click()
+        time.sleep(2)
+        self.driver.find_element(By.XPATH, '//*[@id="base-sign-in-modal_session_key"]').send_keys(self.username)
+        self.driver.find_element(By.XPATH, '//*[@id="base-sign-in-modal_session_password"]').send_keys(self.password)
+        time.sleep(3)
+        WebDriverWait(self.driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, '//*[@id="base-sign-in-modal"]/div/section/div/div/form/div[2]/button'))
+        ).click()
