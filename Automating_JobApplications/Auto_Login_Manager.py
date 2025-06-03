@@ -32,3 +32,14 @@ class AutoLoginManager:
         WebDriverWait(self.driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, '//*[@id="base-sign-in-modal"]/div/section/div/div/form/div[2]/button'))
         ).click()
+
+
+    def auto_apply(self):
+        apply_button = self.driver.find_element(by=By.CSS_SELECTOR, value=".jobs-s-apply button")
+        apply_button.click()
+        time.sleep(5)
+        phone = self.driver.find_element(By.CSS_SELECTOR, value="input[id*=phoneNumber]")
+        if phone.get_attribute("value") == "":
+            phone.send_keys(self.phone)
+        submit_button = self.driver.find_element(by=By.CSS_SELECTOR, value="footer button")
+        submit_button.click()
