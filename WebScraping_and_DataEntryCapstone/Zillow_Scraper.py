@@ -19,4 +19,9 @@ class ZillowScraper:
         print(f"There are {len(all_links)} links to individual listings in total: \n")
         print(all_links)
 
-        
+    
+    def get_addresses(self):
+        all_addresse_elements = self.soup.select(".StyledPropertyCardDataWrapper address")
+        all_addresses = [address.get_text().replace("|", "").strip() for address in all_addresse_elements]
+        print(all_addresses)
+
