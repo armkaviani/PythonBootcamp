@@ -11,4 +11,12 @@ class ZillowScraper:
         self.response = requests.get(self.url, headers=self.headers)
         self.data = self.response.text
         self.soup = BeautifulSoup(self.data, "html.parser")
+
+    
+    def get_links(self):
+        all_link_ellemnts = self.soup.select(".StyledPropertyCardDataWrapper a")
+        all_links = [link["href"] for link in all_link_ellemnts]
+        print(f"There are {len(all_links)} links to individual listings in total: \n")
+        print(all_links)
+
         
