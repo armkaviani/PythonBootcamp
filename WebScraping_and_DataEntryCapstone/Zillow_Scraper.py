@@ -23,5 +23,13 @@ class ZillowScraper:
     def get_addresses(self):
         all_addresse_elements = self.soup.select(".StyledPropertyCardDataWrapper address")
         all_addresses = [address.get_text().replace("|", "").strip() for address in all_addresse_elements]
+        print(f"\n After having been cleaned up, the {len(all_addresses)} addresses now look like this: \n")
         print(all_addresses)
+
+
+    def get_prices(self):
+        all_price_elements = self.soup.select(".PropertyCardWrapper span")
+        all_prices = [price.get_text().replace("/mo", "").split("+")[0] for price in all_price_elements if "$" in price.text]
+        print(f"\n After having been cleaned up, the {len(all_prices)} prices now look like this: \n")
+        print(all_prices)
 
