@@ -15,21 +15,21 @@ class ZillowScraper:
     
     def get_links(self):
         all_link_ellemnts = self.soup.select(".StyledPropertyCardDataWrapper a")
-        all_links = [link["href"] for link in all_link_ellemnts]
-        print(f"There are {len(all_links)} links to individual listings in total: \n")
-        print(all_links)
+        self.all_links = [link["href"] for link in all_link_ellemnts]
+        print(f"There are {len(self.all_links)} links to individual listings in total: \n")
+        print(self.all_links)
 
     
     def get_addresses(self):
         all_addresse_elements = self.soup.select(".StyledPropertyCardDataWrapper address")
-        all_addresses = [address.get_text().replace("|", "").strip() for address in all_addresse_elements]
-        print(f"\n After having been cleaned up, the {len(all_addresses)} addresses now look like this: \n")
-        print(all_addresses)
+        self.all_addresses = [address.get_text().replace("|", "").strip() for address in all_addresse_elements]
+        print(f"\n After having been cleaned up, the {len(self.all_addresses)} addresses now look like this: \n")
+        print(self.all_addresses)
 
 
     def get_prices(self):
         all_price_elements = self.soup.select(".PropertyCardWrapper span")
-        all_prices = [price.get_text().replace("/mo", "").split("+")[0] for price in all_price_elements if "$" in price.text]
-        print(f"\n After having been cleaned up, the {len(all_prices)} prices now look like this: \n")
-        print(all_prices)
+        self.all_prices = [price.get_text().replace("/mo", "").split("+")[0] for price in all_price_elements if "$" in price.text]
+        print(f"\n After having been cleaned up, the {len(self.all_prices)} prices now look like this: \n")
+        print(self.all_prices)
 

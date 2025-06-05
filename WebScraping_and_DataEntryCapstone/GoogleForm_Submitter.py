@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import time
 
 
 class GoogleFormSubmitter:
@@ -16,6 +17,7 @@ class GoogleFormSubmitter:
     
     def submit_form_entries(self):
         for i in range(len(self.all_links)):
+            
             self.driver.get(self.form_url)
             time.sleep(2)
 
