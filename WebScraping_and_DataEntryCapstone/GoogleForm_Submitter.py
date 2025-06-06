@@ -17,10 +17,10 @@ class GoogleFormSubmitter:
     
     def submit_form_entries(self):
         for i in range(len(self.all_links)):
-            
+
             self.driver.get(self.form_url)
             time.sleep(2)
-
+            
             try:
                 address_input = self.driver.find_element(By.XPATH,
                     '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
@@ -29,7 +29,7 @@ class GoogleFormSubmitter:
                 link_input = self.driver.find_element(By.XPATH,
                     '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input')
                 submit_button = self.driver.find_element(By.XPATH,
-                    '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div')
+                    '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div/div[2]')
 
                 address_input.send_keys(self.all_addresses[i])
                 price_input.send_keys(self.all_prices[i])
@@ -37,3 +37,7 @@ class GoogleFormSubmitter:
                 submit_button.click()
             except Exception as e:
                 print(f"Error submitting entry {i + 1}: {e}")
+
+
+
+

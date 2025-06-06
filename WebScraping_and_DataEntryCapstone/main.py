@@ -7,7 +7,7 @@ def main():
     scraper.get_addresses()
     scraper.get_prices()
 
-    submitter = GoogleFormSubmitter("https://docs.google.com/forms/d/e/1FAIpQLSfR5jYLE0TQqSj7d0xpsrGDStC9VwG3aZv7EkVhQRnDj_v2PQ/viewform?usp=header",
+    submitter = GoogleFormSubmitter("https://docs.google.com/forms/d/e/1FAIpQLSf8-27FI_sGZsKRY1eIQAJo5xrLbAGNN-J2caEBcYLuPepYZg/viewform?usp=header",
                                     scraper.all_addresses,
                                     scraper.all_prices,
                                     scraper.all_links)
