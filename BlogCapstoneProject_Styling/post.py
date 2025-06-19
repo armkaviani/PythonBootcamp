@@ -16,3 +16,11 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template('contact.html')
+
+@app.route("/post/<int:index>")
+def show_posts(index):
+    requested_post = ""
+    for post in posts:
+        if post["id"] == index:
+            requested_post = post
+    return render_template('post.html', post=requested_post)
