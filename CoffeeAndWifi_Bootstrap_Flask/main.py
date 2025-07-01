@@ -14,6 +14,20 @@ def home():
     return render_template("index.html")
 
 
+@app.route('/add', methods=["GET", "POST"])
+def add_cafe():
+    form = CafeForm()
+    if form.validate_on_submit():
+        with open("cafe-data.csv") as file:
+            file.write(f"\n{form.cafe.data},"
+                       f"\n{form.location.data},"
+                       f"\n{form.open.data},"
+                       f"\n{form.close.data},"
+                       f"\n{form.coffee_rating.data},"
+                       f"\n{form.wifi_rating.data},"
+                       f"\n{form.power_rating.data},")
+        return redirect(url_for('cafes'))    
+    return render_template('add.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
