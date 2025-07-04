@@ -17,7 +17,11 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-
+# CREATE RECORD
+with app.app_context():
+    new_book = Book(id=1, title="Harry Potter", author="J. K. Rowling", rating=9.3)
+    db.session.add(new_book)
+    db.session.commit()
 
 all_books = []
 
