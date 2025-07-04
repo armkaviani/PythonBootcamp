@@ -13,6 +13,10 @@ db = SQLAlchemy(model_class=Base)
 # Initialise the app with the extension
 db.init_app(app)
 
+# Create table schema in the database. Requires application context.
+with app.app_context():
+    db.create_all()
+
 
 
 all_books = []
