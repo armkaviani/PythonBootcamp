@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select, order_by
 from base import Base
 from book import Book
 
@@ -27,8 +28,9 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    books = Book.query.all()
-    return render_template('index.html', books=books)
+    search_result = db.session.execute(db.select(Book).order_by(Book.title))
+    all_books = search_result.scalars().all()
+    return render_template('index.html', books=all_books)
 
 
 @app.route("/add", methods=["GET", "POST"])
