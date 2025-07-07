@@ -6,7 +6,7 @@ from book import Book
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///new-books-collection.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///books.db"
 
 
 # Create the extension
@@ -24,23 +24,23 @@ with app.app_context():
     db.session.add(new_book)
     db.session.commit()
 
-all_books = []
-
 
 @app.route('/')
 def home():
-    return render_template('index.html', books=all_books)
+    books = Book.query.all()
+    return render_template('index.html', books=books)
 
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
-        book = {
-            "title": request.form["title"],
-            "author": request.form["author"],
-            "rating": request.form["rating"]
-        }
-        all_books.append(book)
+        book = Book(
+            title= request.form["title"],
+            author= request.form["author"],
+            rating= request.form["rating"]
+        )
+        db.session.add(book)
+        db.session.commit()
         return redirect(url_for('home'))
 
     return render_template('add.html')
