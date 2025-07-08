@@ -1,10 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, request
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
 from base import app, db
 from model import Movie
+from form import RateMovieForm
 
     
 @app.route("/")
@@ -12,6 +11,18 @@ def home():
     result = db.session.execute(db.select(Movie))
     all_movies = result.scalars().all()
     return render_template("index.html", movies=all_movies)
+
+@app.route("/edit", methods=["GET", "POST"])
+def rate_movie():
+    form = RateMovieForm()
+    movie_id = request.args.get("id")
+    movie = db.get_or_404(Movie, movie_id)
+    if form.validate_on_submit():
+        movie.rating = float(form.rating.data)
+        movie.review = form.review.data
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template("edit.html", movie=movie, form=form)
 
 
 if __name__ == '__main__':
