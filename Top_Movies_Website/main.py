@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, url_for, request
-from wtforms.validators import DataRequired
 import requests
 from base import app, db
 from model import Movie
