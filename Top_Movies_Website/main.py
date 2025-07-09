@@ -11,8 +11,12 @@ MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
 @app.route("/")
 def home():
-    result = db.session.execute(db.select(Movie))
+    result = db.session.execute(db.select(Movie).order_by(Movie.rating))
     all_movies = result.scalars().all()
+    for number in range(len(all_movies)):
+        all_movies[number].ranking = len(all_movies) - number
+    db.session.commit()
+    
     return render_template("index.html", movies=all_movies)
 
 
