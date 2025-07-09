@@ -4,8 +4,10 @@ from base import app, db
 from model import Movie
 from form import RateMovieForm, FindMovieForm
 
-MOVIE_DB_API_KEY = ""
-MOVIE_DB_SEARCH_URL = ""
+MOVIE_DB_API_KEY = "NOT_A_REAL_KEY"
+MOVIE_DB_SEARCH_URL = "https://api.themoviedb.org/3/search/movie"
+MOVIE_DB_INFO_URL = "https://api.themoviedb.org/3/movie"
+MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
 @app.route("/")
 def home():
@@ -30,7 +32,7 @@ def add_movie():
 def find_movie():
     movie_api_id = request.args.get("id")
     if movie_api_id:
-        movie_api_url = f"{MOVI_DB_INFO_URL}/{movie_api_id}"
+        movie_api_url = f"{MOVIE_DB_INFO_URL}/{movie_api_id}"
         response = requests.get(movie_api_url, params={"api_key": MOVIE_DB_API_KEY, "language": "en-US"})
         data =response.json()
         new_movie = Movie(
@@ -41,7 +43,7 @@ def find_movie():
         )
         db.session.add(new_movie)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("rate_movie", id=new_movie.id))
     
 
 @app.route("/edit", methods=["GET", "POST"])
