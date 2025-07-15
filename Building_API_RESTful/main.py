@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, render_template, request
-from cafe import app
+from cafe import app, db, Cafe
+from sqlalchemy import select
+import random
 
 @app.route("/")
 def home():
@@ -12,7 +14,11 @@ def get_random_cafe():
 
 @app.route("/random")
 def get_random_cafe():
-    pass
+    result = db.session.execute(db.select(Cafe))
+    all_cafes = result.scalars().all()
+    random_cafe = random.choice(all_cafes)
+
+    
 
 # HTTP GET - Read Record
 
