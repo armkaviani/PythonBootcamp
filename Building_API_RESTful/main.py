@@ -12,6 +12,11 @@ def home():
 def get_random_cafe():
     pass
 
+
+def to_dict(self):
+    return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+                
+
 @app.route("/random")
 def get_random_cafe():
     result = db.session.execute(db.select(Cafe))
