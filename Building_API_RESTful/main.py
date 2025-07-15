@@ -8,6 +8,7 @@ def home():
     return render_template("index.html")
 
 
+# HTTP GET - Read Record
 @app.route("/random", methods=["GET"])
 def get_random_cafe():
     pass
@@ -24,9 +25,13 @@ def get_random_cafe():
     random_cafe = random.choice(all_cafes)
     return jsonify(cafe=random_cafe.to_dict())
 
-    
+@app.route("/all")
+def get_all():
+    result = db.session.execute(db.select(Cafe)).order_by(Cafe.name)
+    all_cafes = result.scalars().all()
 
-# HTTP GET - Read Record
+    return jsonify(cafe=[cafe.to_dict() for cafe in all_cafes])
+
 
 # HTTP POST - Create Record
 
