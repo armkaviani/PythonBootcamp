@@ -69,6 +69,34 @@ def add_new_cafe():
 
 # HTTP PUT/PATCH - Update Record
 
+#PATCH /update-price/3?new_price=€2.50
+@app.route("/update-price/<int:cafe_id>", methods=["PATCH"])
+def update_price(cafe_id):
+
+    # Get the new price from the URL query parameter
+    new_price = request.args.get("new_price")
+    try:
+        #try to get the cafe from database by id
+        cafe = db.get(Cafe, cafe_id)
+
+        if cafe is None:
+            raise AttributeError("Cafe not found")
+
+        # Update and commit
+        cafe.coffee_price = new_price
+        db.session.commit()
+        return jsonify(response={"success": "Successfully updated the price."}), 200
+    
+    except AttributeError:
+        return jsonify(error= {"Not Found": "Sorry a cafe with that id was not found in the database."}), 404
+  
+
+
+
+
+
+
+
 # HTTP DELETE - Delete Record
 
 
