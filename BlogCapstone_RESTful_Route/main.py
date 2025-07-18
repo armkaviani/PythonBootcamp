@@ -49,7 +49,7 @@ def new_post():
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for("get_all_posts"))
-    return render_template("make_post.html")
+    return render_template("make_post.html", form=form)
 
 
 
