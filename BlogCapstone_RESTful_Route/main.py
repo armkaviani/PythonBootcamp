@@ -1,11 +1,8 @@
 from flask import Flask, render_template, redirect, url_for
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, URL
-from flask_ckeditor import CKEditor, CKEditorField
 from datetime import date
 from base import app, db
 from model import BlogPost
+from form import PostForm
 
 '''
 Make sure the required packages are installed: 
@@ -37,6 +34,25 @@ def show_post(post_id):
 
 
 # TODO: add_new_post() to create a new blog post
+@app.route('/new-post', methods=['GET', 'POST'])
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        new_post = BlogPost(
+            title = form.post_title.data,
+            subtitle=form.subtitle.data,
+            body=form.body.data,
+            img_url=form.image_url.data,
+            author=form.author.data,
+            date=date.today().strftime("%d/%m/%Y")
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(url_for("get_all_posts"))
+    return render_template("make_post.html")
+
+
+
 
 # TODO: edit_post() to change an existing blog post
 
