@@ -2,12 +2,15 @@ from flask import Flask
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
+from flask_ckeditor import CKEditor
+
 
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
+ckeditor = CKEditor(app)
 
 # CREATE DATABASE
 class Base(DeclarativeBase):
