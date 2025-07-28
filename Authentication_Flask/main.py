@@ -44,6 +44,9 @@ def login():
         result = db.session.execute(db.select(User).where(User.email == email))
         user = result.scalar()
 
+        if check_password_hash(User.password, password):
+            login_user(user)
+            return redirect(url_for('secrets'))
 
     return render_template("login.html")
 
