@@ -5,6 +5,10 @@ from base import app, db, login_manager
 from model import User
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
+
 @app.route('/')
 def home():
     return render_template("index.html")
