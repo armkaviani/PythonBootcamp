@@ -64,7 +64,8 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/download')
+@app.route('/download', methods=['POST'])
+@login_required
 def download():
     return send_from_directory('static', path="files/cheat_sheet.pdf")
 
