@@ -37,6 +37,14 @@ def register():
 
 @app.route('/login')
 def login():
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        result = db.session.execute(db.select(User).where(User.email == email))
+        user = result.scalar()
+
+
     return render_template("login.html")
 
 
