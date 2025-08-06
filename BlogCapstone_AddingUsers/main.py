@@ -50,7 +50,13 @@ def register():
 # TODO: Retrieve a user from the database based on their email. 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    login_manager = LoginManager()
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        result = db.session.execute(db.select(User).where(User.email==email))
+        user = result.scalar()
+
     return render_template("login.html")
 
 
