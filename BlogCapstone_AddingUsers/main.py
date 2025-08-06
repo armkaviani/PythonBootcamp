@@ -41,8 +41,10 @@ def register():
             name = form.name.data,
             password = hash_and_salt_pass,
         )
-        
-    return render_template("register.html")
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for)
+    return render_template("register.html", form=form)
 
 
 # TODO: Retrieve a user from the database based on their email. 
