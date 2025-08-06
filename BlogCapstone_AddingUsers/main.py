@@ -7,6 +7,7 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm
+from model import BlogPost, User
 
     
 '''
@@ -34,6 +35,13 @@ def register():
             method='pbkdf2:sha256',
             salt_length=8
         )
+
+        new_user = User(
+            email = form.email.data,
+            name = form.name.data,
+            password = hash_and_salt_pass,
+        )
+        
     return render_template("register.html")
 
 
