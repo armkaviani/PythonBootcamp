@@ -6,7 +6,7 @@ from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import CreatePostForm, RegisterForm
+from forms import CreatePostForm, RegisterForm, LoginForm
 from model import BlogPost, User
 
     
@@ -43,13 +43,14 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for)
+        return redirect(url_for("get_all_posts"))
     return render_template("register.html", form=form)
 
 
 # TODO: Retrieve a user from the database based on their email. 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
+    login_manager = LoginManager()
     return render_template("login.html")
 
 
