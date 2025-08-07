@@ -58,7 +58,7 @@ def login():
     if form.validate_on_submit():
         email = form.email.data
         password = form.password.data
-        result = db.session.execute(db.select(User).where(User.email==form.email.data))
+        result = db.session.execute(db.select(User).where(User.email==email))
         user = result.scalar()
         user = result.scalar()
 
