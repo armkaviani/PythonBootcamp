@@ -19,6 +19,7 @@ class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
+    author = relationship("User", back_populates="posts")
     title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     subtitle: Mapped[str] = mapped_column(String(250), nullable=False)
     date: Mapped[str] = mapped_column(String(250), nullable=False)
