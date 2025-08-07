@@ -33,6 +33,10 @@ def register():
 
         result = db.session.execute(db.select(User).where(User.email==form.email.data))
         user = result.scalar()
+        if user:
+            flash("You've already signed up with that email!")
+            return redirect(url_for('login'))
+
         hash_and_salt_pass = generate_password_hash(
             form.password.data,
             method='pbkdf2:sha256',
