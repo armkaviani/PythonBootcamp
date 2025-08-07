@@ -34,6 +34,7 @@
           <!-- TODO: Only show delete button if user id is 1 (admin user) -->
           {% if current_user.id == 1: %}
           <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
+          {% endif %}
         </p>
       </div>
       <!-- Divider-->
@@ -50,6 +51,7 @@
           >Create New Post</a
         >
       </div>
+      {% endif %}
 
       <!-- Pager-->
       <div class="d-flex justify-content-end mb-4">
