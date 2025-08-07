@@ -32,6 +32,7 @@ def register():
     if form.validate_on_submit():
 
         result = db.session.execute(db.select(User).where(User.email==form.email.data))
+        user = result.scalar()
         hash_and_salt_pass = generate_password_hash(
             form.password.data,
             method='pbkdf2:sha256',
@@ -59,7 +60,6 @@ def login():
         email = form.email.data
         password = form.password.data
         result = db.session.execute(db.select(User).where(User.email==email))
-        user = result.scalar()
         user = result.scalar()
 
     if user and check_password_hash(user.password, password):
