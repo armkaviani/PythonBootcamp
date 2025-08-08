@@ -3,7 +3,7 @@ from base import app, db
 from model import BlogPost
 from flask import abort, render_template, redirect, url_for, flash
 from flask_gravatar import Gravatar
-from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
+from flask_login import login_user, current_user, logout_user
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
