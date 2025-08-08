@@ -1,4 +1,4 @@
-from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from base import db
 from flask_login import UserMixin

@@ -7,7 +7,7 @@ from flask_login import login_user, current_user, logout_user
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
-from model import BlogPost, User
+from model import BlogPost, User, Comment
 
     
 '''
@@ -97,6 +97,19 @@ def get_all_posts():
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
     comment_form = CommentForm()
+    if comment_form.validate_on_submit:
+        if not current_user.is_authenticetd:
+            flash("You need to login or register to comment.")
+            return redirect(url_for("login"))
+        
+        new_comment = Comment(
+            text=comment_form.comment.data,
+            comment_author=current_user,
+            parent_post=requested_post
+        )
+        db.session.add(new_comment)
+        db.session.commit()  
+              
     return render_template("post.html", post=requested_post,  current_user=current_user, form=comment_form)
 
 
