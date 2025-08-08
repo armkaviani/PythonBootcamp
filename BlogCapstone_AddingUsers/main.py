@@ -6,7 +6,7 @@ from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import CreatePostForm, RegisterForm, LoginForm
+from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from model import BlogPost, User
 
     
@@ -96,7 +96,8 @@ def get_all_posts():
 @app.route("/post/<int:post_id>")
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
-    return render_template("post.html", post=requested_post,  current_user=current_user)
+    comment_form = CommentForm()
+    return render_template("post.html", post=requested_post,  current_user=current_user, form=comment_form)
 
 
 def admin_only(f):
