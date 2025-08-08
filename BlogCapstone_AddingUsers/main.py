@@ -23,6 +23,15 @@ pip3 install -r requirements.txt
 This will install the packages from the requirements.txt for this project.
 '''
 
+#For adding profile images to the comment section
+atar = Gravatar(app,
+                size=100,
+                rating='g',
+                default='retro',
+                force_default=False,
+                force_lower=False,
+                use_ssl=False,
+                base_url=None)
 
 
 # TODO: Use Werkzeug to hash the user's password when creating a new user.
