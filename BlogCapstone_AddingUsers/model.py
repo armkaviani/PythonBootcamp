@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     name: Mapped[str] = mapped_column(String(100))
 
     posts = relationship("BlogPost", back_populates="author")
+    comments = relationship("Comment", back_populates="comment_author")
 
 # CONFIGURE TABLES
 class BlogPost(db.Model):
@@ -28,5 +29,7 @@ class BlogPost(db.Model):
 
 class Comment(db.Model):
     __tablename__ = "comments"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)  
     text: Mapped[str] = mapped_column(Text, nullable=False)
+    author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
+    comment_author = relationship("User", back_populates="comments")
