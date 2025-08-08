@@ -11,7 +11,6 @@ class User(UserMixin, db.Model):
     email: Mapped[str] = mapped_column(String(250), unique=False)
     password: Mapped[str] = mapped_column(String(250))
     name: Mapped[str] = mapped_column(String(100))
-
     posts = relationship("BlogPost", back_populates="author")
     comments = relationship("Comment", back_populates="comment_author")
 
@@ -26,10 +25,13 @@ class BlogPost(db.Model):
     date: Mapped[str] = mapped_column(String(250), nullable=False)
     body: Mapped[str] = mapped_column(Text, nullable=False)
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
+    comments = relationship("Comment", back_populates="parent_post")
 
 class Comment(db.Model):
-    __tablename__ = "comments"
+    __tablename__ = "Comment", back_populates="comment_author"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)  
-    text: Mapped[str] = mapped_column(Text, nullable=False)
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
     comment_author = relationship("User", back_populates="comments")
+    post_id:Mapped[str] = mapped_column(Integer, db.ForeignKey("blog_posts.id"))
+    parent_post = relationship("BlogPost", back_populates="comments")
+    text: Mapped[str] = mapped_column(Text, nullable=False)
